@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+-
+    let projects = {
+        'Elliot3022.xyz': {
+            'href': 'https://www.github.com/elliot3022/elliot3022.github.io',
+            'description': 'The website you\'re looking at. Written in Pug, Stylus, & CoffeeScript'
+        }
+    }
+    let contact_pages = [
+        ['Discord', '@Elliot#3022', 'I\'ll respond 90% of the time on Discord.', 'https://www.discordapp.com/'],
+        ['Twitter', '@Elliot3022', 'Private. Request a follow and I might get back to you', 'https://www.twitter.com/Elliot3022'],
+        ['Email 1', 'elliot3022@gmail.com', '', 'mailto:elliot3022@gmail.com'],
+        ['Email 2', 'eltie905@gmail.com', '', 'mailto:eltie905@gmail.com'],
+    ]
+    let year = new Date().getFullYear()
+    let age = year - 2003
+
+
+html(lang="en")
+    head
+        // Look ma, no jQuery!
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="css/index.css")
+        meta(property="og:title", content="Home")
+        meta(property="og:description", content="Elliot3022's website")
+        meta(property="og:type", content="website")
+        meta(property="og:site_name", content="Elliot3022.xyz")
+        meta(property="og:locale", content="en_US")
+
+        title Elliot3022
+    body
+        .nav.top
+            .spacer
+            .links
+                each v, i in {'Home': '#top', 'About': '#about', 'Projects': '#projects', 'Contact': '#contact'}
+                    a(href=v)=i
+            .spacer
+        .background
+        #top
+        #about
+        .content.about
+            h1 Hello, I'm Elliot.
+            p I'm a #{age} year old programmer that writes in Go, Node, Stylus, Pug, CoffeeScript, and many more languages
+            
+        #projects
+        .content.projects
+            h1 Projects
+            p 
+                ='A full list of my projects can be found on my '
+                a(href="https://www.github.com/elliot3022") Github
+            each v, i in projects
+                .project(id=i)
+                    h3.title=i
+                    .expandThis
+                        .pcontent
+                            .text
+                                = v.description
+                        .links
+                            a(href=v.href) View on GitHub
+        #contact
+        .content.contact
+            h1 Contact Me
+            p You can contact me on these accounts (I might not respond as fast on a lot of them)
+            each v in contact_pages
+                .contact
+                    h3
+                        = v[0]
+                    p
+                        = v[2]
+                    a(href=v[3])
+                        = v[1]
+
+        .footer
+            #text
+                p Pug, Stylus, & CoffeeScript Code (c) Elliot3022 #{year}
+                p.smaller
+                    = 'Background & OpenGraph tags made by my buddy' + ' '
+                    a(href="https://www.github.com/nokkusuu") nox
+                p.even_smaller no the background isn't the Haskell logo
+        script(src="js/index.js")
